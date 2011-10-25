@@ -6,6 +6,11 @@ describe Comment do
 	  	comment = Comment.new
 	  	comment.should respond_to(:task)
 	  end
+
+	  it "should belong to task" do
+	  	comment = Comment.new
+	  	comment.should respond_to(:user)
+	  end
 	end
 
 	 context "validation" do
