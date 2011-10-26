@@ -1,11 +1,15 @@
 require 'spec_helper'
 
 describe User do
+ before do
+  @user = Factory(:user)
+end
+
   context "validations" do
     it "should have an email" do
-      user = User.new :email => nil
-      user.should_not be_valid
-      user.errors[:email].should include("can't be blank")
+      @user.email = nil
+      @user.should_not be_valid
+      @user.errors[:email].should include("can't be blank")
     end
 
     it "should have a unique email" do
