@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 		user = User.find_by_email(params[:email])
 		if user && user.authenticate(params[:password])
 			session[:user_id] = user.id
-			Rails.logger.info "inloggad!"
+			Rails.logger.info "LOGGED IN!"
 			redirect_to user, :notice => "logged in!"
 		else
 			flash.now.alert = "invalid name or psw"

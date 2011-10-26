@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 	attr_accessible :email, :password, :password_confirmation
 	has_secure_password
 
-	has_one :project_membership
+	has_many :project_memberships
 	has_many :projects, :through => :project_memberships
 	has_many :comments
 
