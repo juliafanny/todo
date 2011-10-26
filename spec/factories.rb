@@ -3,3 +3,7 @@ Factory.define :user do |user|
   user.password              "foobar"
   user.password_confirmation "foobar"
 end
+
+Factory.define :project do |project|
+  project.name             "foobar"
+end
