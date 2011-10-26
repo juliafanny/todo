@@ -1,4 +1,9 @@
 Todo::Application.routes.draw do
+  resources :users
+
+  get "sign_up" => "users#new", :as => "sign_up"
+  root :to => "users#new"
+
   match '/auth/:provider/callback', :to => 'sessions#callback'
 
   # The priority is based upon order of creation:
