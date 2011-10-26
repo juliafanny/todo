@@ -1,4 +1,4 @@
-class CreateProjectMemberships < ActiveRecord::Migration
+seclass CreateProjectMemberships < ActiveRecord::Migration
   def change
     create_table :project_memberships do |t|
 
