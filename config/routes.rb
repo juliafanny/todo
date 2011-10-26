@@ -9,6 +9,18 @@ Todo::Application.routes.draw do
   delete "log_out" => "sessions#destroy", :as => "log_out"
   resources :sessions, :only => [:new, :create, :destroy]
 
+	resources :projects do
+    resources :users
+  end
+  #root :to => "projects#index"
+
+  resources :users do
+    resources :projects
+    #resources :comments, :only => [:index, :show]
+  end
+
+  resources :comments
+
   match '/auth/:provider/callback', :to => 'sessions#callback'
 
 end
