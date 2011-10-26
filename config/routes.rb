@@ -1,4 +1,6 @@
 Todo::Application.routes.draw do
+  get "tasks/new"
+
   root :to => "sessions#new"
   
   get "sign_up" => "users#new", :as => "sign_up"
@@ -9,6 +11,12 @@ Todo::Application.routes.draw do
 
 	resources :projects do
     resources :users
+    resources :tasks
+  end
+
+  resources :tasks do
+    resources :projects
+    #resources :comments, :only => [:index, :show]
   end
 
   resources :users do

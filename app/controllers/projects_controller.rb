@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
 
 	def show
     @project = Project.find(params[:id])
-    #@task = Task.new( :project => @project )
+    @task = Task.new( :project => @project )
 
     respond_to do |format|
       format.html # show.html.erb
