@@ -1,19 +1,23 @@
 class TasksController < ApplicationController
+  before_filter :require_user, :except => [:index, :show, :create]
+
   def new
-    @task = Task.new()
+    @project = current_user.projects.find(params[:project_id])
+    @task = @project.tasks.build(params[:task])
   end
 
-	def create #post = project comment = task
-    @project = Project.find(params[:project_id])
-    @task = @project.tasks.new(params[:task].merge(:user_id => session[:user_id]))
+	def create
+    @project = current_user.projects.find(params[:project_id])
+    @task = @project.tasks.build(params[:task])
+    @task.user_id = current_user.id
 
     respond_to do |format|
-      if @comment.save
-        format.html { redirect_to root_path, notice: 'tack för kommentaren.' }
-        format.json { render json: @comment, status: :created, location: @comment }
+      if @task.save
+        format.html { redirect_to root_path, notice: 'do it.' }
+        format.json { render json: @task, status: :created, location: @task }
       else
         format.html { render action: "new" }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
