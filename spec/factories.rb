@@ -7,3 +7,8 @@ end
 Factory.define :project do |project|
   project.name             "foobar"
 end
+
+Factory.define :task do |task|
+  task.name             "foobar"
+  task.association :project
+end

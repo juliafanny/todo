@@ -3,16 +3,17 @@ class TasksController < ApplicationController
     @task = Task.new()
   end
 
-	def create
-    @task = Task.new(params[:task])
+	def create #post = project comment = task
+    @project = Project.find(params[:project_id])
+    @task = @project.tasks.new(params[:task].merge(:user_id => session[:user_id]))
 
     respond_to do |format|
-      if @task.save
-        format.html { redirect_to root_url, notice: 'Post was successfully created.' }
-        format.json { render json: @task, status: :created, location: @task }
+      if @comment.save
+        format.html { redirect_to root_path, notice: 'tack för kommentaren.' }
+        format.json { render json: @comment, status: :created, location: @comment }
       else
         format.html { render action: "new" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -1,26 +1,26 @@
 require 'spec_helper'
 
 describe User do
- before do
-  @user = Factory(:user)
-end
+  # before do
+  #   @user = Factory(:user)
+  # end
 
   context "validations" do
     it "should have an email" do
-      @user.email = nil
-      @user.should_not be_valid
-      @user.errors[:email].should include("can't be blank")
+      user = Factory.build(:user, :email => nil)
+      user.should_not be_valid
+      user.errors[:email].should include("can't be blank")
     end
 
     it "should have a unique email" do
-      User.create(:email=>"email@mail.com")
-      user = User.new(:email=>"email@mail.com")
+      Factory.create(:user, :email => "unique@example.com")
+      user = Factory.build(:user, :email => "unique@example.com")
       user.should_not be_valid
       user.errors[:email].should include("has already been taken")
     end
 
     it "should have valid email" do
-      user = User.new :email => 'email'
+      user = Factory.build :user, :email => 'email'
       user.should_not be_valid
       user.errors[:email].should include("is invalid")
     end

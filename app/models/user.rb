@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
 	has_many :project_memberships
 	has_many :projects, :through => :project_memberships
+	has_mamy :tasks
 	has_many :comments
 
 	validates :email, :presence => true, :uniqueness => true,
