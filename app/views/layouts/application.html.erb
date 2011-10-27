@@ -7,6 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div id="login-out">
+		<% if current_user %>
+			Logged in: <%= current_user.email %>.
+			<%= link_to "Log Out", log_out_path, :method => :delete %>
+		<% else %>
+			<%= link_to 'Sign up', new_user_path %>
+			or Login:
+		<%= render :partial => 'sessions/form' %>
+		<% end %>
+	</div>
 
 <%= yield %>
 

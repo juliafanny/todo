@@ -13,7 +13,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to root_path, notice: 'do it.' }
+        format.html { redirect_to root_path, notice: 'task created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
         format.html { render action: "new" }

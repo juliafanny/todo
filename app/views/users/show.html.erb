@@ -1,19 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
 <% if current_user %>
-		Logged in! 
-		<% @user.projects.each do |p| %>
+		<% @user.projects.each do |project| %>
 			<article class="projects">
-			<p><%= p.name %></p>
+			<p><%=  link_to project.name, project_path(project)   %></p>
 			</article>
 		<% end %>
 
-		<%= link_to "My Projects", user_projects_path(current_user) %>
 		<%= link_to "New Project", new_project_path %>
 		<%= link_to "Log Out", log_out_path, :method => :delete %>
 <% end %>
