@@ -5,11 +5,11 @@ class ProjectsController < ApplicationController
   end
 
 	def create
-    @project = Project.new(params[:project])
+    
 
     respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: 'User was successfully created.' }
+      if @project = current_user.projects.create(params[:project])
+        format.html { redirect_to @project, notice: 'project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }
