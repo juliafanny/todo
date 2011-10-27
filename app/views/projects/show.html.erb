@@ -1,9 +1,25 @@
 <p id="notice"><%= notice %></p>
-<p>
-  <b>Project:</b>
-  <%= @project.name %>
-  <%= @project.id %>
-  <div id="comment-field">
+
+<b><%= @project.name %></b>
+  
+<div id="task-field">
   <%= render :partial => 'tasks/form' %>
 </div>
-</p>
+
+<% @project.tasks.each do |task| %>
+  <p>
+    <b><%= task.name %></b><br />
+  </p>
+<% end %>
+
+<p>users working on this project:</p>
+<% @project.users.each do |user| %>
+  <p>
+    <b><%= user.email %></b><br />
+  </p>
+<% end %>
+
+
+
+
+

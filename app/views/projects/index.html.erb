@@ -1,0 +1,7 @@
+<% @projects.each do |project| %>
+  <article>
+    <div class="projects">
+    	<strong><%= link_to project.name, project_path(project) %></strong> 
+   	</div>
+  </article>
+<% end %>
