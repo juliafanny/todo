@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<b><%= @project.name %></b>
+<h1><%= @project.name %></h1>
 
-<% if current_user %>
+
+<% if @project.has_user?(current_user) %>
 	<div id="task-field">
   		<%= render :partial => 'tasks/form' %>
 	</div>
@@ -16,9 +17,11 @@
    				<p><%= c.body %></p>		
    			<% end %>
    		</div>
+      <% if @project.has_user?(current_user) %>
    		<div id="comment-field">
   			<%= render :partial => "comments/form", :locals => {:task => task, :comment => task.comments.build} %>
   		</div>
+      <% end %>
   	</article>
 <% end %>
 
@@ -29,6 +32,10 @@
   </p>
 <% end %>
 
+<h1>Project News</h1>
+<% @project.tasks.newly_added.each do |t| %>
+  <p><%= t.name %></p>    
+<% end %>
 
 
 

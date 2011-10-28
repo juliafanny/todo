@@ -7,8 +7,8 @@ class Task < ActiveRecord::Base
 
 	scope :newly_added, lambda { 
 		where("created_at >= ?", 1.week.ago)
-	# 	order("created_at DESC").
-	# 	limit(10)
+	 	order("created_at DESC").
+		limit(10)
 	}
 
 

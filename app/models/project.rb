@@ -5,6 +5,10 @@ class Project < ActiveRecord::Base
 	has_many :users, :through => :project_memberships
 	has_many :tasks
 
+	def has_user?(user)
+		users.include? user
+	end
+
 	#scope :recent, lambda { published.where("projectss.published_at > ?",1.week.ago.to_date)}
 
 end
