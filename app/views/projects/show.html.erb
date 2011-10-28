@@ -1,15 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <b><%= @project.name %></b>
-  
-<div id="task-field">
-  <%= render :partial => 'tasks/form' %>
-</div>
+
+<% if current_user %>
+	<div id="task-field">
+  		<%= render :partial => 'tasks/form' %>
+	</div>
+<% end %>
 
 <% @project.tasks.each do |task| %>
   <p>
     <b><%= task.name %></b><br />
   </p>
+  <%= render :partial => "comments/form", :locals => {:task => task, :comment => task.comments.build} %>
 <% end %>
 
 <p>users working on this project:</p>

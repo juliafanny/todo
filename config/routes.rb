@@ -12,11 +12,12 @@ Todo::Application.routes.draw do
 	resources :projects do
     resources :users
     resources :tasks
+    resources :project_memberships, :only => [:create]
   end
 
   resources :tasks do
     resources :projects
-    #resources :comments, :only => [:index, :show]
+    resources :comments, :only => [:create]
   end
 
   resources :users do
