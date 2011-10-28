@@ -15,8 +15,18 @@ describe Task do
 
   context "scopes" do
     context "newly_created" do
-      it "should find a couple of new tasks"
-      it "should not find an old task"
+      it "should find a couple of new tasks" do
+        new_task = Factory(:task, :created_at => Time.now)
+        newish_task = Factory(:task, :created_at => 3.days.ago)
+        tasks = Task.newly_added
+        tasks.should include new_task
+        tasks.should include newish_task
+      end
+
+      it "should not find an old task" do
+        old_task = Factory(:task, :created_at => 3.weeks.ago)
+        Task.newly_added.should_not include old_task
+      end
       it "should at most find 10 tasks"
       it "should order them by created_at"
     end

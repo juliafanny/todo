@@ -14,8 +14,6 @@ class ProjectsController < ApplicationController
   end
 
 	def create
-    
-
     respond_to do |format|
       if @project = current_user.projects.create(params[:project])
         format.html { redirect_to @project, notice: 'project was successfully created.' }

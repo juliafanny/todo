@@ -9,10 +9,17 @@
 <% end %>
 
 <% @project.tasks.each do |task| %>
-  <p>
-    <b><%= task.name %></b><br />
-  </p>
-  <%= render :partial => "comments/form", :locals => {:task => task, :comment => task.comments.build} %>
+	<article>
+		<div class="task">
+			<b><%= task.name %></b>
+   			<% task.comments.each do |c| %>
+   				<p><%= c.body %></p>		
+   			<% end %>
+   		</div>
+   		<div id="comment-field">
+  			<%= render :partial => "comments/form", :locals => {:task => task, :comment => task.comments.build} %>
+  		</div>
+  	</article>
 <% end %>
 
 <p>users working on this project:</p>

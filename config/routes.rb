@@ -22,7 +22,7 @@ Todo::Application.routes.draw do
 
   resources :users do
     resources :projects
-    #resources :comments, :only => [:index, :show]
+    resources :comments, :only => [:index, :show]
   end
 
   resources :comments
