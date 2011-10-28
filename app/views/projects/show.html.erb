@@ -33,9 +33,11 @@
 <% end %>
 
 <h1>Project News</h1>
-<% @project.tasks.newly_added.each do |t| %>
+<% @project.tasks.newly_added_tasks.each do |t| %>
   <p><%= t.name %></p>    
 <% end %>
+
+
 
 
 

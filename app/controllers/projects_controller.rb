@@ -28,10 +28,10 @@ class ProjectsController < ApplicationController
 	def show
     @project = Project.find(params[:id])
     @task = Task.new( :project => @project )
-    # @news = {
+    #@news = {
     #           :new_comments => @project.tasks.map(&:comments).map(&:new_comments),
     #           :newly_completed_tasks => @project.tasks.map(&:newly_completed),
-    #           :newly_added_tasks => @project.tasks.map(&:newly_added)
+    #            :newly_added_tasks => @project.tasks.map(&:newly_added)
     #         }
 
     respond_to do |format|

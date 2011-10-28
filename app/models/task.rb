@@ -5,10 +5,9 @@ class Task < ActiveRecord::Base
 
 	validates :name, :presence => true
 
-	scope :newly_added, lambda { 
-		where("created_at >= ?", 1.week.ago)
+	scope :newly_added_tasks, lambda { 
 	 	order("created_at DESC").
-		limit(10)
+		limit(5)
 	}
 
 
