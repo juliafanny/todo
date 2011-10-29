@@ -1,8 +1,8 @@
 Todo::Application.routes.draw do
-  get "project_memberships/create"
-  resources :project_memberships
 
   get "tasks/new"
+  get "project_memberships/create"
+  get "project_memberships/accept_join"
 
   root :to => "sessions#new"
   
@@ -12,10 +12,12 @@ Todo::Application.routes.draw do
   #delete "log_out" => "sessions#destroy", :as => "log_out"
   resources :sessions, :only => [:new, :create, :destroy]
 
+  resources :project_memberships
+
 	resources :projects do
     resources :users
     resources :tasks
-    resources :project_memberships, :only => [:create]
+    resources :project_memberships
   end
 
   resources :tasks do

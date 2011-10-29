@@ -6,10 +6,9 @@
 	<div id="task-field">
   		<%= render :partial => 'tasks/form' %>
 	</div>
+<% else %>
+  <%= link_to 'Join', :controller => "project_memberships", :action => "create", :id => @project %>
 <% end %>
-
-<!--<%= link_to 'Join', new_project_membership_path(@project) %>-->
-<%= link_to 'Join', :controller => "project_memberships", :action => "create", :id => @project %>
 
 <% @project.tasks.each do |task| %>
 	<article>
@@ -37,4 +36,13 @@
 <h1>Project News</h1>
 <% @project.tasks.newly_added_tasks.each do |t| %>
   <p><%= t.name %></p>    
+<% end %>
+
+<% if @project.has_user?(current_user) %>
+  <% ProjectMembership.pending_joins.each do |pm| %>
+    <% if pm.user_id != current_user.id %>
+      <% user = User.find(pm.user_id) %>
+      <p><%= link_to "Accept " << user.email, :controller => "project_memberships", :action => "accept_join", :id => pm.id %></p> 
+    <% end %>
+  <% end %>
 <% end %>

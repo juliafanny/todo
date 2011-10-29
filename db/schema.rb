@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027094930) do
+ActiveRecord::Schema.define(:version => 20111029134959) do
 
   create_table "comments", :force => true do |t|
     t.datetime "created_at"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20111027094930) do
     t.datetime "updated_at"
     t.integer  "project_id"
     t.integer  "user_id"
+    t.boolean  "accepted"
   end
 
   create_table "projects", :force => true do |t|
