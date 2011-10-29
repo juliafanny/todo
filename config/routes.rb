@@ -1,4 +1,7 @@
 Todo::Application.routes.draw do
+  get "project_memberships/create"
+  resources :project_memberships
+
   get "tasks/new"
 
   root :to => "sessions#new"

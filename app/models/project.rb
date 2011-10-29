@@ -11,4 +11,7 @@ class Project < ActiveRecord::Base
 
 	#scope :recent, lambda { published.where("projectss.published_at > ?",1.week.ago.to_date)}
 
+	searchable do
+		text :name
+	end
 end

@@ -1,7 +1,11 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = Project.all
+    @search = Project.search do
+      fulltext params[:search]
+    end
+    @projects = @search.results
+    #@projects = Project.all
 
     respond_to do |format|
       format.html # index.html.erb
