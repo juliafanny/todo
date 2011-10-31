@@ -4,6 +4,11 @@ Factory.define :user do |user|
   user.password_confirmation "foobar"
 end
 
+Factory.define :project_memberships do |membership|
+  membership.project {|project| project.association(:project) }
+  membership.user {|user| user.association(:user) }
+end
+
 Factory.define :project do |project|
   project.name             "foobar"
 end

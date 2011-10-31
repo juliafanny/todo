@@ -1,4 +1,5 @@
 Todo::Application.routes.draw do
+  resources :projects
 
   get "tasks/new"
   get "project_memberships/create"
@@ -9,7 +10,7 @@ Todo::Application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
   get "log_in" => "sessions#new", :as => "log_in"
   get "log_out" => "sessions#destroy", :as => "log_out"
-  #delete "log_out" => "sessions#destroy", :as => "log_out"
+ 
   resources :sessions, :only => [:new, :create, :destroy]
 
   resources :project_memberships
@@ -30,7 +31,6 @@ Todo::Application.routes.draw do
     resources :comments, :only => [:index, :show]
   end
 
-  resources :comments
 
   #match '/auth/:provider/callback', :to => 'sessions#callback'
 

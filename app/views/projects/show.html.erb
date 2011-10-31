@@ -2,13 +2,18 @@
 
 <h1><%= @project.name %></h1>
 
+<% if !@project.has_user?(current_user) %>
+<% if !@project.false_user?(current_user)%>
+  <%= link_to 'Join', :controller => "project_memberships", :action => "create", :id => @project %>
+<% end %> 
+<% end %> 
+
+
 <% if @project.has_user?(current_user) %>
 	<div id="task-field">
   		<%= render :partial => 'tasks/form' %>
 	</div>
-<% else %>
-  <%= link_to 'Join', :controller => "project_memberships", :action => "create", :id => @project %>
-<% end %>
+<% end %> 
 
 <% @project.tasks.each do |task| %>
 	<article>
@@ -27,9 +32,9 @@
 <% end %>
 
 <p>users working on this project:</p>
-<% @project.users.each do |user| %>
+<% @project.project_memberships.accepted.each do |m| %>
   <p>
-    <b><%= user.email %></b><br />
+    <b><%= m.user.email %></b><br />
   </p>
 <% end %>
 
@@ -45,4 +50,4 @@
       <p><%= link_to "Accept " << user.email, :controller => "project_memberships", :action => "accept_join", :id => pm.id %></p> 
     <% end %>
   <% end %>
-<% end %>
+<% end %> 

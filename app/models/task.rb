@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-	has_many :comments
+	has_many :comments #, :dependent => :destroy
 	belongs_to :project
 	belongs_to :user
 

@@ -3,17 +3,27 @@ class Project < ActiveRecord::Base
 
 	has_many :project_memberships
 	has_many :users, :through => :project_memberships
-	has_many :tasks
+	has_many :tasks, :dependent => :destroy
+
+	before_create :accept_all_project_memberships
 
 	def has_user?(user)
 		@project_membership = project_memberships.where(:user_id => user.id, :accepted => true)
-		return !@project_membership.empty?
-		#users.include? user
+		return @project_membership.any? 
+		
 	end
 
-	#scope :recent, lambda { published.where("projectss.published_at > ?",1.week.ago.to_date)}
+	def false_user?(user)
+		@project_membership = project_memberships.where(:user_id => user.id, :accepted => false)
+		return @project_membership.any? 
+		
+	end
 
 	searchable do
 		text :name
+	end
+
+	def accept_all_project_memberships
+		project_memberships.map {|pm| pm.accepted = true; }
 	end
 end
