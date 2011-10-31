@@ -1,10 +1,18 @@
 <% if current_user %>
+	
+	<article class="projects">
+		<h3>My Projects</h3>
 		<% @user.projects.each do |project| %>
-			<article class="projects">
 			<p><%=  link_to project.name, project_path(project)   %></p>
-			</article>
 		<% end %>
+	</article>
 
-		<%= link_to "New Project", new_project_path %>
+	<%= link_to "New Project", new_project_path %>
+
+	<% if @user.id == current_user.id %>
+		<article class="delete">
+			<td><%= link_to 'Delete Me', @user, confirm: 'Just do it!', :controller => "user", :action => "destroy", :id => @user %></td>
+		</article>
+	<% end %>
 <% end %>
 

@@ -1,19 +1,15 @@
 Todo::Application.routes.draw do
-  resources :projects
+  root :to => "sessions#new"
 
-  get "tasks/new"
   get "project_memberships/create"
   get "project_memberships/accept_join"
-
-  root :to => "sessions#new"
+  # delete "users/destroy"
   
   get "sign_up" => "users#new", :as => "sign_up"
   get "log_in" => "sessions#new", :as => "log_in"
   get "log_out" => "sessions#destroy", :as => "log_out"
  
   resources :sessions, :only => [:new, :create, :destroy]
-
-  resources :project_memberships
 
 	resources :projects do
     resources :users
@@ -28,7 +24,7 @@ Todo::Application.routes.draw do
 
   resources :users do
     resources :projects
-    resources :comments, :only => [:index, :show]
+    resources :comments
   end
 
 

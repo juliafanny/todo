@@ -1,7 +1,29 @@
 /*
- * This is a manifest file that'll automatically include all the stylesheets available in this directory
- * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
- * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *  inget # när selectar ett elementnamn istället för id
+ * 
  *= require_self
  *= require_tree . 
 */
+#pageTitle {
+text-align: center;
+color: #000000;
+font-family: Georgia;
+font-size: 30px;
+}
+
+body {
+background-color: #FFFFFF;
+}
+
+p
+{
+font-family:"Georgia";
+font-size:10px;
+}
+
+a {
+color: #BF86A2;
+}
+a:visited {
+color: #A3527A;
+}

@@ -1,3 +1,25 @@
-// Place all the styles related to the projects controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+ *  inget # när selectar ett elementnamn istället för id
+ * 
+ *= require_self
+ *= require_tree . 
+*/
+
+#projectName {
+text-align: center;
+color: #A3527A;
+font-family: Georgia;
+}
+
+article #tasksComments{
+
+	div.task{
+		width:100px;
+		float:left;
+	}
+	
+	div.commentt{
+	float:left;
+	}
+}
+

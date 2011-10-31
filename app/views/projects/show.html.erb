@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @project.name %></h1>
+<h1 id="projectName"><%= @project.name %></h1>
+
 
 <% if !@project.has_user?(current_user) %>
 <% if !@project.false_user?(current_user)%>
@@ -15,21 +16,23 @@
 	</div>
 <% end %> 
 
+<article id"tasksComments">
 <% @project.tasks.each do |task| %>
-	<article>
 		<div class="task">
 			<b><%= task.name %></b>
+        <div class="comment">
    			<% task.comments.each do |c| %>
    				<p><%= c.body %></p>		
    			<% end %>
-   		</div>
+   		  </div>
+    </div>
       <% if @project.has_user?(current_user) %>
    		<div id="comment-field">
   			<%= render :partial => "comments/form", :locals => {:task => task, :comment => task.comments.build} %>
   		</div>
       <% end %>
-  	</article>
 <% end %>
+</article>
 
 <p>users working on this project:</p>
 <% @project.project_memberships.accepted.each do |m| %>
