@@ -1,22 +1,26 @@
-<% if current_user %>
-	
-	<article class="projects">
-		<h3>My Projects</h3>
-		<% @user.projects.each do |project| %>
-			<p><%=  link_to project.name, project_path(project)   %></p>
-		<% end %>
-	</article>
+<% if @user.id == current_user.id %>
 
+	<article class="acceptedProjects">
+		<h3>My Projects</h3>
+		<% @user.project_memberships.accepted.each do |m| %>
+    		<b><%= m.project.name %></b><br />
+    	<% end %>
+ 	</article>
+
+ 	<article class="pendingProjects">
+		<h3>Pending Projects</h3>
+		<% @user.project_memberships.pending_joins.each do |m| %>
+   	 		<b><%= m.project.name %></b><br />
+    	<% end %>
+	</article>
+	
 	<%= link_to "New Project", new_project_path %>
 
-	<% if @user.id == current_user.id %>
-		<article class="delete">
-			<td><%= link_to 'Delete Me', @user, confirm: 'Just do it!', :controller => "user", :action => "delete", :id => @user %></td>
-		</article>
-	<% end %>
-<% end %>
 
-<% if @user.id == session[:user_id]%>
+	<article class="delete">
 		<td><%= link_to 'Delete me', @user, confirm: 'Just do it!', method: :delete %></td>
-<% end %>
+	</article>
 
+<% else %>
+	<p> <%= @user.email %> </p>
+<% end %>

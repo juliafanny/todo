@@ -14,7 +14,7 @@ class ProjectMembershipsController < ApplicationController
 
   	respond_to do |format|
       if @projectMembership.save
-	  		format.html { redirect_to project_path(@project), notice: 'project joined.' }
+	  		format.html { redirect_to project_path(@project), notice: 'A request to join is sent.' }
 	  	else 
 	  		format.html { redirect_to project_path(@project), notice: 'join failed.' }
 	  	end
