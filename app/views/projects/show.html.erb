@@ -1,7 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <h1 id="projectName"><%= @project.name %></h1>
 
+<p id="notice"><%= notice %></p>
 
 <% if !@project.has_user?(current_user) %>
 <% if !@project.false_user?(current_user)%>
@@ -16,21 +15,21 @@
 	</div>
 <% end %> 
 
-<article id"tasksComments">
-<% @project.tasks.each do |task| %>
-		<div class="task">
+<article id="taskComment">
+  <% @project.tasks.each do |task| %>
+    <div class="task">
 			<b><%= task.name %></b>
-        <div class="comment">
    			<% task.comments.each do |c| %>
-   				<p><%= c.body %></p>		
-   			<% end %>
+          <div class="comment">
+   				  <p><%= c.body %></p>		
+   			  <% end %>
    		  </div>
-    </div>
-      <% if @project.has_user?(current_user) %>
-   		<div id="comment-field">
-  			<%= render :partial => "comments/form", :locals => {:task => task, :comment => task.comments.build} %>
-  		</div>
-      <% end %>
+  </div>
+  <% if @project.has_user?(current_user) %>
+   	<div id="comment-field">
+  		<%= render :partial => "comments/form", :locals => {:task => task, :comment => task.comments.build} %>
+  	</div>
+  <% end %>
 <% end %>
 </article>
 
@@ -41,10 +40,11 @@
   </p>
 <% end %>
 
-<h1>Project News</h1>
-<% @project.tasks.newly_added_tasks.each do |t| %>
-  <p><%= t.name %></p>    
-<% end %>
+<article id="news">
+  <p id="projectNews">Project News</p>
+  <% @project.tasks.newly_added_tasks.each do |t| %>
+    <p>added task: <%= t.name %></p>    
+  <% end %>
 
 <% if @project.has_user?(current_user) %>
   <% ProjectMembership.pending_joins.each do |pm| %>
@@ -54,3 +54,4 @@
     <% end %>
   <% end %>
 <% end %> 
+</article>

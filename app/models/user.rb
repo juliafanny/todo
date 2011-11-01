@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 	attr_accessible :email, :password, :password_confirmation
 	has_secure_password
 
-	has_many :project_memberships
+	has_many :project_memberships, :dependent => :destroy
 	#has_many :accepted_memberships, :class_name => "Membership", :conditions => {:accepted => true }
 	has_many :projects, :through => :project_memberships
 	#has_many :accepted_projects, :through => :project_memberships, :source => :project, :conditions => {:project_memberships => {:state => {:accepted => true} }}

@@ -11,8 +11,12 @@
 
 	<% if @user.id == current_user.id %>
 		<article class="delete">
-			<td><%= link_to 'Delete Me', @user, confirm: 'Just do it!', :controller => "user", :action => "destroy", :id => @user %></td>
+			<td><%= link_to 'Delete Me', @user, confirm: 'Just do it!', :controller => "user", :action => "delete", :id => @user %></td>
 		</article>
 	<% end %>
+<% end %>
+
+<% if @user.id == session[:user_id]%>
+		<td><%= link_to 'Delete me', @user, confirm: 'Just do it!', method: :delete %></td>
 <% end %>
 
