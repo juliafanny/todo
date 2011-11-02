@@ -9,7 +9,8 @@
 <body>
 	<div id="login-out">
 		<% if current_user %>
-			Logged in: <%= current_user.email %>.
+			Logged in: <%= current_user.email %>
+			<%= link_to "My page", user_path(current_user) %>
 			<%= link_to "Log Out", log_out_path, :method => :delete %>
 		<% else %>
 			<%= link_to 'Sign up', new_user_path %>

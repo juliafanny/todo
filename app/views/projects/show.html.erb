@@ -46,6 +46,18 @@
     <p>added task: <%= t.name %></p>    
   <% end %>
 
+  <% @project.tasks.each do |task| %>
+        <% task.comments.new_comments.each do |c| %>
+          <div class="comment">
+            <p>added comments: <%= c.body %></p>    
+          <% end %>
+        </div>
+  </div>
+<% end %>
+</article>
+
+
+
 <% if @project.has_user?(current_user) %>
   <% ProjectMembership.pending_joins.each do |pm| %>
     <% if pm.user_id != current_user.id %>
@@ -55,4 +67,17 @@
   <% end %>
 <% end %> 
 </article>
+
+<article id="taskLatestComment">
+  <% @project.tasks.each do |task| %>
+        <% task.comments.new_comments.each do |c| %>
+          <div class="comment">
+            <p><%= c.body %></p>    
+          <% end %>
+        </div>
+  </div>
+<% end %>
+</article>
+
+
 
